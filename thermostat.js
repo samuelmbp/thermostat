@@ -12,6 +12,18 @@ class Thermostat {
   up() {
     ++this.temperature;
   }
+
+  down() {
+    --this.temperature;
+  }
 }
 
+
 module.exports = Thermostat;
+
+
+const thermostat = new Thermostat()
+thermostat.up()
+console.log(thermostat.getTemperature())
+thermostat.down()
+console.log(thermostat.getTemperature())
