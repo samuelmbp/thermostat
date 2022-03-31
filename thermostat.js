@@ -1,8 +1,14 @@
 const BASE_TEMP = 20;
+const POWER_SAWING_ON_MAX_TEMP = 25;
+const POWER_SAWING_OFF_MAX_TEMP = 32;
+const MINIMUM_TEMP = 10;
+const MAX_TEMP = 32;
+
 
 class Thermostat {
   constructor() {
     this.temperature = BASE_TEMP;
+    this.mode = true
   }
 
   getTemperature() {
@@ -10,11 +16,27 @@ class Thermostat {
   }
 
   up() {
-    ++this.temperature;
+    if (this.temperature > 25 && this.mode) 
+      this.temperature = POWER_SAWING_ON_MAX_TEMP 
+    else if (this.temperature > 32 && this.mode === false) {
+      this.temperature = POWER_SAWING_OFF_MAX_TEMP
+    } else {
+      ++this.temperature;
+    }
   }
 
   down() {
+    if (this.temperature < 10) {
+      this.temperature = MINIMUM_TEMP;
+    } else {
     --this.temperature;
+    }
+  }
+
+  setPowerSawingMode(mode) {
+   if (typeof mode === 'boolean') {
+     return this.mode = mode;
+   }
   }
 }
 
