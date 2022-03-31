@@ -47,4 +47,20 @@ describe('Thermostat', () => {
     thermostat.reset();
     expect(thermostat.getTemperature()).toBe(20);
   });
+
+  test('checks medium energy usage', () => {
+    expect(thermostat.energyUsage()).toBe('Medium usage!');
+  });
+
+  test('checks high energy usage', () => {
+    thermostat.setPowerSawingMode(false);
+    for (let i = 0; i <= 50; i++) thermostat.up();
+    expect(thermostat.energyUsage()).toBe('High usage!');
+  });
+
+  test('checks high energy usage', () => {
+    thermostat.setPowerSawingMode(false);
+    for (let i = 0; i <= 10; i++) thermostat.down();
+    expect(thermostat.energyUsage()).toBe('Low usage!');
+  });
 });
