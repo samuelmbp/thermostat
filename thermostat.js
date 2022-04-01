@@ -14,9 +14,9 @@ class Thermostat {
   }
 
   up() {
-    if (this.temperature > 25 && this.mode)
+    if (this.temperature >= 25 && this.mode === true)
       this.temperature = POWER_SAWING_ON_MAX_TEMP;
-    else if (this.temperature > 32 && this.mode === false) {
+    else if (this.temperature === 32 && this.mode === false) {
       this.temperature = POWER_SAWING_OFF_MAX_TEMP;
     } else {
       ++this.temperature;
@@ -24,7 +24,7 @@ class Thermostat {
   }
 
   down() {
-    if (this.temperature < 10) {
+    if (this.temperature <= 10) {
       this.temperature = MINIMUM_TEMP;
     } else {
       --this.temperature;

@@ -1,5 +1,6 @@
 const Thermostat = require('./thermostat');
 const readline = require('readline');
+const { Console } = require('console');
 
 const thermostat = new Thermostat();
 const rl = readline.createInterface({
@@ -9,15 +10,15 @@ const rl = readline.createInterface({
 
 const prompt = () => {
   rl.question('Enter command > ', (userInput) => {
-    thermostat.setPowerSawingMode(true);
-    if (userInput === 'up') {
+    if (userInput === 'psm on' && thermostat.getTemperature() >= 25) {
+      thermostat.setPowerSawingMode(true);
+      console.log(`Temperature is 25 (maximum reached)`);
+    } else if (userInput === 'up') {
       thermostat.up();
       console.log(`Temperature is ${thermostat.getTemperature()}`);
     } else if (userInput === 'down') {
       thermostat.down();
       console.log(`Temperature is ${thermostat.getTemperature()}`);
-    } else if (userInput === 'psm on' && thermostat.getTemperature() > 25) {
-      console.log(`Temperature is 25 (maximum reached)`);
     } else if (userInput === 'psm off') {
       thermostat.setPowerSawingMode(false);
     }
@@ -26,4 +27,4 @@ const prompt = () => {
 
 setInterval(() => {
   prompt();
-}, 1000);
+}, 2000);
