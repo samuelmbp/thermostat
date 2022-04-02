@@ -1,12 +1,26 @@
+import WeatherApi from './weather.js';
+
 const BASE_TEMP = 20;
 const POWER_SAWING_ON_MAX_TEMP = 25;
 const POWER_SAWING_OFF_MAX_TEMP = 32;
 const MINIMUM_TEMP = 10;
 
 class Thermostat {
-  constructor() {
+  constructor(weather) {
+    this.weather = weather;
     this.temperature = BASE_TEMP;
     this.mode = true;
+  }
+
+  setCity(city, callback) {
+    this.weather.fetchWeatherApi(city, (dataWeather) => {
+      console.log(`City: ${dataWeather.name}`);
+      for (let info in dataWeather.main)
+        console.log(`${info}: ${dataWeather.main[info]}`);
+
+      this.temperature = dataWeather.main.temp;
+      callback();
+    });
   }
 
   getTemperature() {
@@ -48,10 +62,11 @@ class Thermostat {
   }
 }
 
-module.exports = Thermostat;
+// const weather = new WeatherApi();
+// const thermostat = new Thermostat(weather);
+// thermostat.setCity('Dubai', () => {
+//   thermostat.getTemperature();
+// });
 
-// const thermostat = new Thermostat();
-// thermostat.up();
-// console.log(thermostat.getTemperature());
-// thermostat.down();
-// console.log(thermostat.getTemperature());
+// export default Thermostat;
+// module.exports = Thermostat;

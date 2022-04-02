@@ -1,4 +1,6 @@
-const Thermostat = require('../thermostat');
+// const Thermostat = require('../thermostat');
+import Thermostat from '../thermostat.js';
+// import WeatherApi from '../weather.js';
 
 describe('Thermostat', () => {
   let thermostat;
@@ -62,5 +64,12 @@ describe('Thermostat', () => {
     thermostat.setPowerSawingMode(false);
     for (let i = 0; i <= 10; i++) thermostat.down();
     expect(thermostat.energyUsage()).toBe('Low usage!');
+  });
+
+  test('returns the weather for a given city', () => {
+    const weather = { fetchWeatherApi: () => 11 };
+    const thermostat = new Thermostat(weather);
+    thermostat.setCity('London', () => {});
+    expect(thermostat.getTemperature()).toBe(11);
   });
 });

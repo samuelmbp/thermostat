@@ -13,7 +13,10 @@ class WeatherApi {
   }
 }
 
-const weather = new WeatherApi();
-weather.fetchWeatherApi('Brindisi', (callbackWeatherData) => {
-  console.log(callbackWeatherData.main);
-});
+// const weather = new WeatherApi();
+// weather.fetchWeatherApi('Dubai', (callbackWeatherData) => {
+//   console.log(callbackWeatherData.main);
+// });
+
+// modules.export = WeatherApi;
+export default WeatherApi;
