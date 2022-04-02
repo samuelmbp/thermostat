@@ -20,8 +20,11 @@
     "url": "https://github.com/samuelmbp/thermostat/issues"
   },
   "homepage": "https://github.com/samuelmbp/thermostat#readme",
+  "type": "module",
   "dependencies": {
+    "got": "^12.0.3",
     "jest": "^27.5.1",
+    "node-fetch": "^3.2.3",
     "readline": "^1.3.0"
   }
 }
