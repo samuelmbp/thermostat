@@ -22,6 +22,7 @@
   "homepage": "https://github.com/samuelmbp/thermostat#readme",
   "type": "module",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "got": "^12.0.3",
     "jest": "^27.5.1",
     "node-fetch": "^3.2.3",
